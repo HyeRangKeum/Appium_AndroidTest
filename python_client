@@ -1,0 +1,46 @@
+# -*- coding: utf-8 -*-
+import os
+import unittest
+from appium import webdriver
+from time import sleep
+
+
+class ChessAndroidTests(unittest.TestCase):
+
+
+    def setUp(self):
+   # Setup for the test
+        desired_caps = {}
+        desired_caps['platformName'] = 'Android'
+        desired_caps['platformVersion'] = '8.0'
+        desired_caps['deviceName'] = 'test'
+        # Returns abs path relative to this file and not cwd
+        desired_caps['app'] = os.path.abspath(os.path.join(os.path.dirname(__file__), '/Users/password_specup/Appium_AndroidTest/app/build/outputs/apk/debug/app-debug.apk'))
+        desired_caps['appPackage'] = 'com.hyerang.appiumtest'
+        desired_caps['appActivity'] = 'com.hyerang.appiumtest.MainActivity'
+        self.driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
+
+    def tearDown(self):
+      #"Tear down the test"
+       self.driver.quit()
+
+    def test_single_player_mode(self):
+        " 테스트 결과 확인 "
+        element= self.driver.find_element_by_id("com.hyerang.appiumtest:id/resultButton")
+        element.click()
+        sleep(2)
+        element = self.driver.find_element_by_id("com.hyerang.appiumtest:id/resetButton")
+        element.click()
+        sleep(2)
+        element = self.driver.find_element_by_id("com.hyerang.appiumtest:id/resultButton")
+        element.click()
+        sleep(2)
+        element = self.driver.find_element_by_id("com.hyerang.appiumtest:id/resetButton")
+        element.click()
+        sleep(5)
+
+
+# ---START OF SCRIPT
+if __name__ == '__main__':
+    suite = unittest.TestLoader().loadTestsFromTestCase(ChessAndroidTests)
+    unittest.TextTestRunner(verbosity=2).run(suite)
