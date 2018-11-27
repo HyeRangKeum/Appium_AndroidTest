@@ -3,6 +3,7 @@ package com.hyerang.appiumtest
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.hyerang.appiumtest.login.LoginActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), MainView {
@@ -26,7 +27,7 @@ class MainActivity : AppCompatActivity(), MainView {
 
 
     override fun showLoginActivity() {
-        startActivity(Intent())
+        startActivity(Intent(this, LoginActivity::class.java))
     }
 
     override fun onDestroy() {

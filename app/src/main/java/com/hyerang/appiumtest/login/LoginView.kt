@@ -9,4 +9,6 @@ interface LoginView {
     fun getUserPw() : String?
 
     fun showError(error : String)
+
+    fun successLogin()
 }

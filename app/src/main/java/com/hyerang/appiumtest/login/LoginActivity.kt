@@ -31,6 +31,11 @@ class LoginActivity : AppCompatActivity(), LoginView {
         Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
     }
 
+    override fun successLogin() {
+        showError("로그인 성공")
+        finish()
+    }
+
     override fun getUserId(): String? {
         val userId =  inputIDEditText.text.trim().toString()
 
