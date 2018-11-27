@@ -8,12 +8,9 @@ class MainPresenter {
         mainView = view
     }
 
-    fun resultButtonClicked() {
-        mainView?.showResultButtonClickedText()
-    }
 
-    fun resetButtonClicked() {
-        mainView?.showResetButtonClickedText()
+    fun startLoginActivity() {
+        mainView?.showLoginActivity()
     }
 
     fun dropView() {

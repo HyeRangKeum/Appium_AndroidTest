@@ -1,5 +1,6 @@
 package com.hyerang.appiumtest
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_main.*
@@ -18,21 +19,14 @@ class MainActivity : AppCompatActivity(), MainView {
     }
 
     private fun setButtonClick() {
-        resultButton.setOnClickListener {
-            mainPresenter.resultButtonClicked()
-        }
-
-        resetButton.setOnClickListener {
-            mainPresenter.resetButtonClicked()
+        startLoginButton.setOnClickListener {
+            mainPresenter.startLoginActivity()
         }
     }
 
-    override fun showResultButtonClickedText() {
-        resultTextView.text = "Button Clicked!"
-    }
 
-    override fun showResetButtonClickedText() {
-        resultTextView.text = "Not Button Clicked"
+    override fun showLoginActivity() {
+        startActivity(Intent())
     }
 
     override fun onDestroy() {
