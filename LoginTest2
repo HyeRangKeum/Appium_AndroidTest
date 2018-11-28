@@ -1,0 +1,49 @@
+# -*- coding: utf-8 -*-
+import os
+import unittest
+from time import sleep
+
+from appium import webdriver
+
+
+class LoginTest(unittest.TestCase):
+
+
+    def setUp(self):
+   # Setup for the test
+        desired_caps = {}
+        desired_caps['platformName'] = 'Android'
+        desired_caps['platformVersion'] = '8.0'
+        desired_caps['deviceName'] = 'test'
+        # Returns abs path relative to this file and not cwd
+        desired_caps['app'] = os.path.abspath(os.path.join(os.path.dirname(__file__), '/Users/___/Desktop/app-debug.apk'))
+        desired_caps['appPackage'] = 'com.hyerang.appiumtest'
+        desired_caps['appActivity'] = 'com.hyerang.appiumtest.MainActivity'
+        self.driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
+
+    def tearDown(self):
+      # "Tear down the test"
+       self.driver.quit()
+
+    def test_search_field(self):
+        StartLogin = self.driver.find_element_by_id('com.hyerang.appiumtest:id/startLoginButton')
+        StartLogin.click()
+        print('버튼클릭성공')
+        account = self.driver.find_element_by_xpath('/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[2]/android.view.ViewGroup/android.widget.LinearLayout[1]/android.widget.EditText')
+        account.click()
+        account.send_keys('test@test.com')
+
+        password = self.driver.find_element_by_xpath('/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[2]/android.view.ViewGroup/android.widget.LinearLayout[2]/android.widget.EditText')
+        password.click()
+        password.send_keys('aaaaaa')
+
+        Login = self.driver.find_element_by_id ('com.hyerang.appiumtest:id/loginButton')
+        Login.click()
+        sleep(10)
+
+        print('로그인 성공')
+
+# ---START OF SCRIPT
+if __name__ == '__main__':
+    suite = unittest.TestLoader().loadTestsFromTestCase(LoginTest)
+    unittest.TextTestRunner(verbosity=2).run(suite)
