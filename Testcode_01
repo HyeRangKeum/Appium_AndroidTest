@@ -15,7 +15,7 @@ class ChessAndroidTests(unittest.TestCase):
         desired_caps['platformVersion'] = '8.0'
         desired_caps['deviceName'] = 'test'
         # Returns abs path relative to this file and not cwd
-        desired_caps['app'] = os.path.abspath(os.path.join(os.path.dirname(__file__), '/Users/password_specup/Appium_AndroidTest/app/build/outputs/apk/debug/app-debug.apk'))
+        desired_caps['app'] = os.path.abspath(os.path.join(os.path.dirname(__file__), '/Users/_____/Appium_AndroidTest/app/build/outputs/apk/debug/app-debug.apk'))
         desired_caps['appPackage'] = 'com.hyerang.appiumtest'
         desired_caps['appActivity'] = 'com.hyerang.appiumtest.MainActivity'
         self.driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
