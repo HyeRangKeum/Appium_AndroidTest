@@ -16,7 +16,7 @@ class LoginTest(unittest.TestCase):
         desired_caps['platformVersion'] = '8.0'
         desired_caps['deviceName'] = 'test'
         # Returns abs path relative to this file and not cwd
-        desired_caps['app'] = os.path.abspath(os.path.join(os.path.dirname(__file__), '/Users/___/Desktop/app-debug.apk'))
+        desired_caps['app'] = os.path.abspath(os.path.join(os.path.dirname(__file__), '/Users/password_specup/Desktop/app-debug.apk'))
         desired_caps['appPackage'] = 'com.hyerang.appiumtest'
         desired_caps['appActivity'] = 'com.hyerang.appiumtest.MainActivity'
         self.driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
@@ -29,14 +29,24 @@ class LoginTest(unittest.TestCase):
         StartLogin = self.driver.find_element_by_id('com.hyerang.appiumtest:id/startLoginButton')
         StartLogin.click()
         print('버튼클릭성공')
+
+        #아이디 공백 입력 후 로그인 버튼 선택
+        Login = self.driver.find_element_by_id('com.hyerang.appiumtest:id/loginButton')
+        Login.click()
+        sleep(1)
+        #아이디 정상 입력
         account = self.driver.find_element_by_xpath('/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[2]/android.view.ViewGroup/android.widget.LinearLayout[1]/android.widget.EditText')
         account.click()
         account.send_keys('test@test.com')
 
+        #아이디 정상입력후 비밀번호 공백 입력, 로그인버튼선택
+        Login = self.driver.find_element_by_id('com.hyerang.appiumtest:id/loginButton')
+        Login.click()
+        sleep(1)
+        # 비밀번호 정상 입력 후 로그인 시도
         password = self.driver.find_element_by_xpath('/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[2]/android.view.ViewGroup/android.widget.LinearLayout[2]/android.widget.EditText')
         password.click()
         password.send_keys('aaaaaa')
-
         Login = self.driver.find_element_by_id ('com.hyerang.appiumtest:id/loginButton')
         Login.click()
         sleep(10)
