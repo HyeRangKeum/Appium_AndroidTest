@@ -52,7 +52,6 @@ class LoginTest(unittest.TestCase):
         sleep(10)
 
         print('로그인 성공')
-
 # ---START OF SCRIPT
 if __name__ == '__main__':
     suite = unittest.TestLoader().loadTestsFromTestCase(LoginTest)
